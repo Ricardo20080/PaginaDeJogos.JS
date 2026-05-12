@@ -1,0 +1,247 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(circle at top, rgba(59,130,246,0.25), transparent 40%),
+        radial-gradient(circle at bottom, rgba(37,99,235,0.15), transparent 50%),
+        #0b1120;
+
+    color: white;
+
+    min-height: 100vh;
+}
+
+/* ================= HEADER (OBRIGATÓRIO IGUAL) ================= */
+
+header{
+    width: 100%;
+
+    padding: 25px 60px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    background: rgba(10,15,30,0.8);
+
+    backdrop-filter: blur(10px);
+}
+
+header h1{
+    font-size: 2rem;
+
+    color: #60a5fa;
+
+    letter-spacing: 4px;
+}
+
+/* MENU */
+
+nav ul{
+    display: flex;
+
+    list-style: none;
+
+    gap: 18px;
+}
+
+nav a{
+    text-decoration: none;
+
+    color: #cbd5e1;
+
+    padding: 10px 16px;
+
+    border-radius: 12px;
+
+    transition: 0.3s;
+
+    font-weight: bold;
+}
+
+nav a:hover{
+    background: rgba(96,165,250,0.15);
+
+    color: white;
+}
+
+nav a.active{
+    background: #2563eb;
+
+    color: white;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    padding: 60px;
+}
+
+/* ================= ABOUT ================= */
+
+.about-section{
+    max-width: 750px;
+
+    margin-bottom: 60px;
+}
+
+.tag{
+    display: inline-block;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    background: rgba(96,165,250,0.15);
+
+    color: #60a5fa;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.about-section h2{
+    font-size: 3rem;
+
+    line-height: 1.2;
+
+    margin-bottom: 20px;
+}
+
+.about-section p{
+    color: #94a3b8;
+
+    font-size: 1.1rem;
+
+    line-height: 1.7;
+}
+
+/* ================= GRID ================= */
+
+.games-grid{
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 30px;
+}
+
+/* ================= CARD NEON ================= */
+
+.game-card{
+    background: rgba(17,24,39,0.7);
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    transition: 0.4s;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.game-card:hover{
+    transform: translateY(-10px);
+
+    border-color: rgba(96,165,250,0.5);
+
+    box-shadow:
+        0 0 25px rgba(96,165,250,0.25),
+        0 25px 50px rgba(0,0,0,0.5);
+}
+
+/* IMAGEM */
+
+.image-box{
+    height: 220px;
+
+    overflow: hidden;
+}
+
+.image-box img{
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: 0.5s;
+}
+
+.game-card:hover img{
+    transform: scale(1.1);
+}
+
+/* CONTEÚDO */
+
+.card-content{
+    padding: 24px;
+}
+
+.card-content h3{
+    font-size: 1.5rem;
+
+    margin-bottom: 10px;
+}
+
+.card-content p{
+    color: #94a3b8;
+
+    margin-bottom: 20px;
+}
+
+/* BOTÃO LENDÁRIO */
+
+.play-btn{
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 14px;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    color: white;
+
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+
+    transition: 0.3s;
+}
+
+.play-btn:hover{
+    box-shadow: 0 0 20px rgba(59,130,246,0.5);
+
+    transform: scale(1.03);
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media(max-width: 900px){
+
+    .games-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .about-section h2{
+        font-size: 2.2rem;
+    }
+
+    .container{
+        padding: 30px;
+    }
+}

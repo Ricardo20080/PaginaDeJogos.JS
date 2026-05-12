@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Arena</title>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<header>
+
+    <h1>PIXEL ARENA</h1>
+
+    <nav>
+        <ul>
+            <li><a href="#" class="active">Início</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <section class="about-section">
+
+        <span class="tag">MINI GAMES MULTIPLAYER</span>
+
+        <h2>
+            Uma coleção de jogos clássicos
+            em um só lugar
+        </h2>
+
+        <p>
+            Um hub de mini games modernos com foco em lógica, memória e reflexo.
+            Jogue diretamente no navegador e desafie seus amigos.
+        </p>
+
+    </section>
+
+    <section class="games-grid">
+
+        <div class="game-card">
+            <div class="image-box">
+                <img src="assets/genius.jpg" alt="Genius">
+            </div>
+
+            <div class="card-content">
+                <h3>Genius</h3>
+                <p>Memorize a sequência de cores.</p>
+
+                <button class="play-btn" data-link="jogo-genius/genius.html">
+                    Jogar
+                </button>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="image-box">
+                <img src="assets/jogodavelha.png" alt="Jogo da Velha">
+            </div>
+
+            <div class="card-content">
+                <h3>Jogo da Velha</h3>
+                <p>Alinhe 3 símbolos e vença.</p>
+
+                <button class="play-btn" data-link="jogo-da-velha/jogodavelha.html">
+                    Jogar
+                </button>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="image-box">
+                <img src="assets/pedrapapeltesoura.png" alt="Pedra Papel Tesoura">
+            </div>
+
+            <div class="card-content">
+                <h3>Pedra Papel Tesoura</h3>
+                <p>Desafie a lógica do computador.</p>
+
+                <button class="play-btn" data-link="jogo-pedra/pedra.html">
+                    Jogar
+                </button>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="image-box">
+                <img src="assets/adivinhaçao.png" alt="Adivinhar Número">
+            </div>
+
+            <div class="card-content">
+                <h3>Adivinhe o Número</h3>
+                <p>Descubra o número secreto.</p>
+
+                <button class="play-btn" data-link="jogo-adivinhar/adivinhar.html">
+                    Jogar
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+document.querySelectorAll(".play-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        window.location.href = btn.dataset.link;
+    });
+});
+</script>
+
+</body>
+</html>

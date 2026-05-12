@@ -1,0 +1,373 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at top, rgba(59,130,246,0.20), transparent 45%),
+        radial-gradient(circle at bottom, rgba(37,99,235,0.12), transparent 55%),
+        #0b1120;
+
+    color: white;
+}
+
+/* ================= HEADER (PADRÃO PIXEL ARENA) ================= */
+
+.main-header{
+    width: 100%;
+
+    padding: 25px 60px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    background: rgba(10,15,30,0.8);
+
+    backdrop-filter: blur(10px);
+}
+
+/* LOGO / BRAND */
+
+.brand{
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #60a5fa;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.logo-img{
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 10px;
+
+    object-fit: cover;
+
+    border: 1px solid rgba(96,165,250,0.4);
+}
+
+.main-header span{
+    font-size: 1.2rem;
+}
+
+/* BOTÃO VOLTAR */
+
+.btn-back{
+    background: transparent;
+
+    border: none;
+
+    color: #cbd5e1;
+
+    padding: 10px 16px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-back:hover{
+    background: rgba(96,165,250,0.15);
+
+    color: white;
+}
+
+/* ================= LAYOUT ================= */
+
+.app{
+    display: grid;
+
+    grid-template-columns: 280px 1fr 280px;
+
+    gap: 25px;
+
+    padding: 30px;
+
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+/* SIDEBARS */
+
+.sidebar{
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+/* ================= CARDS ================= */
+
+.card{
+    background: rgba(255,255,255,0.03);
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.card h2{
+    font-size: 1rem;
+
+    color: #60a5fa;
+
+    margin-bottom: 10px;
+}
+
+.card p{
+    font-size: 0.9rem;
+
+    color: #94a3b8;
+
+    line-height: 1.6;
+}
+
+/* ================= CONTROLES ================= */
+
+#startBtn{
+    width: 100%;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#startBtn:hover{
+    transform: scale(1.03);
+
+    box-shadow: 0 0 20px rgba(37,99,235,0.5);
+}
+
+#status{
+    margin-top: 10px;
+
+    font-size: 0.9rem;
+
+    color: #cbd5e1;
+}
+
+/* ================= CENTRO ================= */
+
+.game-area{
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+/* TABULEIRO */
+
+.board{
+    display: grid;
+
+    grid-template-columns: repeat(3, 100px);
+
+    gap: 12px;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.02);
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+}
+
+/* CELULAS */
+
+.cell{
+    width: 100px;
+
+    height: 100px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    background: rgba(255,255,255,0.03);
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    transition: 0.2s;
+}
+
+.cell:hover{
+    background: rgba(96,165,250,0.1);
+
+    transform: scale(1.05);
+
+    box-shadow: 0 0 15px rgba(96,165,250,0.25);
+}
+
+/* ================= RESET ================= */
+
+#reset{
+    margin-top: 15px;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    background: transparent;
+
+    color: #cbd5e1;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#reset:hover{
+    border-color: #60a5fa;
+
+    color: #60a5fa;
+}
+
+/* ================= SCORE ================= */
+
+.score p{
+    margin: 6px 0;
+
+    color: #cbd5e1;
+}
+
+
+
+
+@keyframes glowWin {
+    0% {
+        box-shadow: 0 0 0 rgba(96,165,250,0);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(96,165,250,0.7);
+        transform: scale(1.08);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(96,165,250,0.4);
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInResult {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shakeDraw {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-3px); }
+}
+
+/* ================= VITÓRIA ================= */
+
+.cell.win {
+    background: rgba(96,165,250,0.25);
+    border: 1px solid rgba(96,165,250,0.8);
+
+    animation: glowWin 0.8s ease-in-out infinite;
+}
+
+/* ================= MENSAGEM ================= */
+
+#status.win {
+    color: #60a5fa;
+    font-weight: bold;
+
+    animation: fadeInResult 0.5s ease forwards;
+}
+
+#status.draw {
+    color: #94a3b8;
+
+    animation: shakeDraw 0.5s ease;
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media (max-width: 1000px){
+
+    .app{
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+    }
+
+    .board{
+        grid-template-columns: repeat(3, 85px);
+    }
+
+    .cell{
+        width: 85px;
+
+        height: 85px;
+    }
+}

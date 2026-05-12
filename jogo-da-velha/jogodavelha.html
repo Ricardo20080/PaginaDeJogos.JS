@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha | Pixel Arena</title>
+
+    <link rel="stylesheet" href="jogodavelha.css">
+</head>
+<body>
+
+<header class="main-header">
+
+    <div class="brand">
+
+        <img src="../assets/jogodavelha.png" alt="jogo da velha logo" class="logo-img">
+
+        <span>JOGO DA VELHA</span>
+
+    </div>
+
+    <button class="btn-back" onclick="location.href='../index.html'">
+        Voltar
+    </button>
+
+</header>
+
+<main class="app">
+
+    <!-- ESQUERDA -->
+    <aside class="sidebar left">
+
+        <section class="card">
+            <h2>Sobre o jogo</h2>
+
+            <p>
+                Jogo da Velha é um jogo clássico de estratégia onde dois jogadores
+                alternam entre X e O até formar uma linha vencedora.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Controle</h2>
+
+            <button id="startBtn">Iniciar jogo</button>
+
+            <p id="status">Aguardando início...</p>
+        </section>
+
+    </aside>
+
+    <!-- CENTRO -->
+    <section class="game-area">
+
+        <div class="board" id="board"></div>
+
+        <button id="reset">Reiniciar partida</button>
+
+    </section>
+
+    <!-- DIREITA -->
+    <aside class="sidebar right">
+
+        <section class="card">
+            <h2>Placar</h2>
+
+            <div class="score">
+                <p>X: <span id="scoreX">0</span></p>
+                <p>O: <span id="scoreO">0</span></p>
+            </div>
+        </section>
+
+    </aside>
+
+</main>
+
+<script src="jogodavelha.js"></script>
+
+</body>
+</html>
