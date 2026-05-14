@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Adivinhação | Pixel Arena</title>
+
+   <link rel="stylesheet" href="adivinhaçao.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+
+        <div class="brand">
+
+         <img src="../assets/adivinhaçao.png"
+             alt="logo adivinhação"
+             class="logo-img">
+
+         <span>ADIVINHAÇÃO</span>
+
+        </div>
+
+         <button class="btn-back"
+            onclick="location.href='../index.html'">
+
+        Voltar
+
+         </button>
+
+    </header>
+
+
+    <!-- APP -->
+    <main class="app">
+
+        <!-- SIDEBAR ESQUERDA -->
+        <aside class="sidebar left">
+
+
+            <!-- SOBRE -->
+            <section class="card">
+
+                <h2>Sobre o jogo</h2>
+
+                <p>
+                    Cada jogador enfrenta um número secreto diferente.
+                    Quem acertar com menos tentativas vence o campeonato.
+                </p>
+
+                <br>
+
+                <p>
+                    O sistema dará dicas:
+                    <br>
+                    ⬆️ O número é maior
+                    <br>
+                    ⬇️ O número é menor
+                    <br>
+                    🎉 Você acertou
+                </p>
+
+            </section>
+
+
+
+            <!-- DIFICULDADE -->
+            <section class="card">
+
+                <h2>Dificuldade</h2>
+
+                <div class="difficulty-buttons">
+
+                    <button class="difficulty-btn active"
+                            data-level="easy">
+
+                        Fácil
+                    </button>
+
+                    <button class="difficulty-btn"
+                            data-level="medium">
+
+                        Médio
+                    </button>
+
+                    <button class="difficulty-btn"
+                            data-level="hard">
+
+                        Difícil
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- CONTROLES -->
+            <section class="card">
+
+                <h2>Controle</h2>
+
+                <button id="startGameBtn">
+
+                    Iniciar campeonato
+
+                </button>
+
+                <button id="restartBtn">
+
+                    Reiniciar partida
+
+                </button>
+
+            </section>
+
+        </aside>
+
+
+
+        <!-- CENTRO -->
+        <section class="game-area">
+
+
+            <!-- STATUS -->
+            <div class="game-status">
+
+                <h1 id="turnTitle">
+
+                    Aguardando início...
+
+                </h1>
+
+                <p id="statusMessage">
+
+                    Escolha a dificuldade e inicie.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- INPUT -->
+            <div class="guess-box">
+
+                <input type="number"
+                       id="guessInput"
+                       placeholder="Digite seu palpite">
+
+                <button id="guessBtn">
+
+                    Tentar
+
+                </button>
+
+            </div>
+
+
+
+            <!-- RESULTADO -->
+            <div class="result-box">
+
+                <h2 id="hintText">
+
+                    Nenhuma tentativa realizada.
+
+                </h2>
+
+            </div>
+
+
+
+            <!-- VITÓRIA -->
+            <div class="victory-screen"
+                 id="victoryScreen">
+
+                <h1>
+
+                    🏆 Vitória!
+
+                </h1>
+
+                <p id="victoryText">
+
+                    -
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SIDEBAR DIREITA -->
+        <aside class="sidebar right">
+
+
+            <!-- CAMPEONATO -->
+            <section class="card">
+
+                <h2>Campeonato</h2>
+
+                <p id="currentPlayerText">
+
+                    Jogador atual: -
+
+                </p>
+
+                <p id="difficultyText">
+
+                    Dificuldade: -
+
+                </p>
+
+            </section>
+
+
+
+            <!-- PLACAR -->
+            <section class="card">
+
+                <h2>Tentativas</h2>
+
+                <div class="score-box">
+
+                    <div class="score-item">
+
+                        <h3>Jogador 1</h3>
+
+                        <span id="player1Attempts">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="score-item">
+
+                        <h3>Jogador 2</h3>
+
+                        <span id="player2Attempts">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- RECORD -->
+            <section class="card">
+
+                <h2>Recorde</h2>
+
+                <p id="bestScoreText">
+
+                    Sem recorde
+
+                </p>
+
+            </section>
+
+
+
+            <!-- FASE -->
+            <section class="card">
+
+                <h2>Fase atual</h2>
+
+                <p id="phaseText">
+
+                    Aguardando...
+
+                </p>
+
+            </section>
+
+        </aside>
+
+    </main>
+
+
+    <script src="adivinhaçao.js"></script>
+
+</body>
+</html>

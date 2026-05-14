@@ -1,0 +1,427 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(circle at top, rgba(59,130,246,0.25), transparent 40%),
+        radial-gradient(circle at bottom, rgba(37,99,235,0.15), transparent 50%),
+        #0b1120;
+
+    color:white;
+
+    min-height:100vh;
+}
+
+/* ================= HEADER ================= */
+
+.main-header{
+    width:100%;
+
+    padding:25px 60px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    background: rgba(10,15,30,0.8);
+
+    backdrop-filter: blur(10px);
+}
+
+.brand{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#60a5fa;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
+.logo-img{
+    width:42px;
+
+    height:42px;
+
+    border-radius:10px;
+
+    object-fit:cover;
+
+    border:1px solid rgba(96,165,250,0.4);
+}
+
+.main-header span{
+    font-size:1.2rem;
+}
+
+.btn-back{
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    color:white;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    transition:0.3s;
+}
+
+.btn-back:hover{
+    transform:scale(1.03);
+
+    box-shadow:
+        0 0 20px rgba(59,130,246,0.5);
+}
+
+
+/* ================= APP ================= */
+
+.app{
+    padding:40px;
+
+    display:grid;
+
+    grid-template-columns: 320px 1fr 320px;
+
+    gap:30px;
+}
+
+
+/* ================= SIDEBARS ================= */
+
+.sidebar{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+}
+
+
+/* ================= CARDS ================= */
+
+.card{
+    background: rgba(17,24,39,0.7);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-radius:24px;
+
+    padding:25px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
+
+    transition:0.3s;
+}
+
+.card:hover{
+    border-color: rgba(96,165,250,0.5);
+
+    box-shadow:
+        0 0 25px rgba(96,165,250,0.2),
+        0 20px 40px rgba(0,0,0,0.4);
+}
+
+.card h2{
+    color:#60a5fa;
+
+    margin-bottom:18px;
+}
+
+.card p{
+    color:#94a3b8;
+
+    line-height:1.6;
+}
+
+
+/* ================= DIFICULDADE ================= */
+
+.difficulty-buttons{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.difficulty-btn{
+    border:none;
+
+    cursor:pointer;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:
+        rgba(96,165,250,0.12);
+
+    transition:0.3s;
+}
+
+.difficulty-btn:hover{
+    transform:translateY(-2px);
+}
+
+.difficulty-btn.active{
+    background:#2563eb;
+
+    box-shadow:
+        0 0 20px rgba(59,130,246,0.4);
+}
+
+
+/* ================= BOTÕES ================= */
+
+#startGameBtn,
+#restartBtn,
+#guessBtn{
+    border:none;
+
+    cursor:pointer;
+
+    padding:14px 20px;
+
+    border-radius:14px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    transition:0.3s;
+}
+
+#startGameBtn:hover,
+#restartBtn:hover,
+#guessBtn:hover{
+    transform:scale(1.03);
+
+    box-shadow:
+        0 0 20px rgba(59,130,246,0.5);
+}
+
+#restartBtn{
+    margin-top:12px;
+}
+
+
+/* ================= GAME AREA ================= */
+
+.game-area{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+}
+
+
+/* ================= STATUS ================= */
+
+.game-status{
+    background: rgba(17,24,39,0.7);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+}
+
+.game-status h1{
+    font-size:2rem;
+
+    margin-bottom:12px;
+}
+
+.game-status p{
+    color:#94a3b8;
+}
+
+
+/* ================= INPUT ================= */
+
+.guess-box{
+    display:flex;
+
+    gap:20px;
+}
+
+#guessInput{
+    flex:1;
+
+    padding:18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:18px;
+
+    font-size:1.1rem;
+
+    color:white;
+
+    background:
+        rgba(17,24,39,0.7);
+
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+#guessInput:focus{
+    border-color:#60a5fa;
+
+    box-shadow:
+        0 0 15px rgba(96,165,250,0.2);
+}
+
+
+/* ================= RESULTADO ================= */
+
+.result-box{
+    background: rgba(17,24,39,0.7);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+}
+
+.result-box h2{
+    color:#60a5fa;
+}
+
+
+/* ================= VITÓRIA ================= */
+
+.victory-screen{
+    display:none;
+
+    background:
+        rgba(17,24,39,0.9);
+
+    border:1px solid rgba(96,165,250,0.3);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    text-align:center;
+
+    animation: victoryPop 0.4s ease;
+}
+
+.victory-screen h1{
+    color:#60a5fa;
+
+    margin-bottom:15px;
+}
+
+.victory-screen p{
+    color:#cbd5e1;
+}
+
+
+/* ================= PLACAR ================= */
+
+.score-box{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+}
+
+.score-item{
+    text-align:center;
+}
+
+.score-item h3{
+    color:#94a3b8;
+
+    margin-bottom:8px;
+}
+
+.score-item span{
+    font-size:2rem;
+
+    font-weight:bold;
+
+    color:#60a5fa;
+}
+
+
+/* ================= ANIMAÇÕES ================= */
+
+@keyframes victoryPop{
+
+    from{
+        transform:scale(0.7);
+
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+
+        opacity:1;
+    }
+
+}
+
+
+/* ================= RESPONSIVO ================= */
+
+@media(max-width:1100px){
+
+    .app{
+        grid-template-columns:1fr;
+    }
+
+    .guess-box{
+        flex-direction:column;
+    }
+
+    .main-header{
+        padding:20px;
+    }
+
+}

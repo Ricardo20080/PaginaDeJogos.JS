@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedra Papel Tesoura | Pixel Arena</title>
+
+    <link rel="stylesheet" href="pedrapapeltesoura.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+
+    <div class="brand">
+
+        <img src="../assets/pedrapapeltesoura.png"
+             alt="logo pedra papel tesoura"
+             class="logo-img">
+
+        <span>PEDRA PAPEL TESOURA</span>
+
+    </div>
+
+    <button class="btn-back"
+            onclick="location.href='../index.html'">
+
+        Voltar
+
+    </button>
+
+</header>
+
+
+    <!-- APP -->
+    <main class="app">
+
+        <!-- SIDEBAR ESQUERDA -->
+        <aside class="sidebar left">
+
+            <!-- SOBRE -->
+            <section class="card">
+
+                <h2>Sobre o jogo</h2>
+
+                <p>
+                    Cada jogador enfrenta a máquina individualmente.
+                    Primeiro joga o Jogador 1, depois o Jogador 2.
+                    No final, quem conquistar mais vitórias vence o campeonato.
+                </p>
+
+                <br>
+
+                <p>
+                    Regras:
+                    <br>
+                    ✊ Pedra vence Tesoura
+                    <br>
+                    ✂️ Tesoura vence Papel
+                    <br>
+                    📄 Papel vence Pedra
+                </p>
+
+            </section>
+
+
+            <!-- MODOS -->
+            <section class="card">
+
+                <h2>Modo de jogo</h2>
+
+                <div class="mode-buttons">
+
+                    <button class="mode-btn active" data-mode="3">
+                        Melhor de 3
+                    </button>
+
+                    <button class="mode-btn" data-mode="free">
+                        Modo Livre
+                    </button>
+
+                    <button class="mode-btn" data-mode="7">
+                        Melhor de 7
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONTROLES -->
+            <section class="card">
+
+                <h2>Controle</h2>
+
+                <button id="startGameBtn">
+                    Iniciar campeonato
+                </button>
+
+                <button id="resetScoreBtn">
+                    Reiniciar placar
+                </button>
+
+            </section>
+
+        </aside>
+
+
+
+        <!-- CENTRO -->
+        <section class="game-area">
+
+            <!-- STATUS -->
+            <div class="game-status">
+
+                <h1 id="turnTitle">
+                    Aguardando início...
+                </h1>
+
+                <p id="roundMessage">
+                    Escolha um modo e inicie o campeonato.
+                </p>
+
+            </div>
+
+
+            <!-- ESCOLHAS -->
+            <div class="choices-area">
+
+                <button class="choice-btn" data-choice="pedra">
+
+                    <span class="emoji">✊</span>
+
+                    <span>Pedra</span>
+
+                </button>
+
+
+                <button class="choice-btn" data-choice="papel">
+
+                    <span class="emoji">📄</span>
+
+                    <span>Papel</span>
+
+                </button>
+
+
+                <button class="choice-btn" data-choice="tesoura">
+
+                    <span class="emoji">✂️</span>
+
+                    <span>Tesoura</span>
+
+                </button>
+
+            </div>
+
+
+            <!-- RESULTADO -->
+            <div class="battle-area">
+
+                <div class="battle-card">
+
+                    <h3>Jogador</h3>
+
+                    <div id="playerChoiceDisplay">
+                        ?
+                    </div>
+
+                </div>
+
+
+                <div class="battle-card vs">
+
+                    <span>VS</span>
+
+                </div>
+
+
+                <div class="battle-card">
+
+                    <h3>Máquina</h3>
+
+                    <div id="computerChoiceDisplay">
+                        ?
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULTADO TEXTO -->
+            <div class="result-box">
+
+                <h2 id="resultText">
+                    Nenhuma rodada iniciada.
+                </h2>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SIDEBAR DIREITA -->
+        <aside class="sidebar right">
+
+            <!-- CAMPEONATO -->
+            <section class="card">
+
+                <h2>Campeonato</h2>
+
+                <p id="currentPlayer">
+                    Jogador atual: -
+                </p>
+
+                <p id="gameModeText">
+                    Modo: -
+                </p>
+
+            </section>
+
+
+            <!-- PLACAR -->
+            <section class="card">
+
+                <h2>Placar</h2>
+
+                <div class="score-box">
+
+                    <div class="score-item">
+
+                        <h3>Jogador 1</h3>
+
+                        <span id="player1Score">
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div class="score-item">
+
+                        <h3>Jogador 2</h3>
+
+                        <span id="player2Score">
+                            0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FASE -->
+            <section class="card">
+
+                <h2>Fase atual</h2>
+
+                <p id="phaseStatus">
+                    Aguardando...
+                </p>
+
+            </section>
+
+        </aside>
+
+    </main>
+
+
+    <script src="pedrapapeltesoura.js"></script>
+
+</body>
+</html>

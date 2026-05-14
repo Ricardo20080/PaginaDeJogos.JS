@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Genius | Pixel Arena</title>
+
+    <link rel="stylesheet"
+          href="genius.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+
+        <div class="brand">
+
+            <img src="../assets/genius.jpg"
+                 alt="logo genius"
+                 class="logo-img">
+
+            <span>GENIUS</span>
+
+        </div>
+
+        <button class="btn-back"
+                onclick="location.href='../index.html'">
+
+            Voltar
+
+        </button>
+
+    </header>
+
+
+
+    <!-- APP -->
+    <main class="app">
+
+
+        <!-- ESQUERDA -->
+        <aside class="sidebar left">
+
+
+            <!-- SOBRE -->
+            <section class="card">
+
+                <h2>Sobre o jogo</h2>
+
+                <p>
+                    Memorize a sequência de cores
+                    e repita corretamente.
+                </p>
+
+                <br>
+
+                <p>
+                    Primeiro joga o Jogador 1.
+                    Depois o Jogador 2.
+                    Quem fizer mais pontos vence.
+                </p>
+
+            </section>
+
+
+
+            <!-- CONTROLES -->
+            <section class="card">
+
+                <h2>Controle</h2>
+
+                <button id="startBtn">
+
+                    Iniciar campeonato
+
+                </button>
+
+                <button id="restartBtn">
+
+                    Reiniciar
+
+                </button>
+
+            </section>
+
+
+        </aside>
+
+
+
+        <!-- CENTRO -->
+        <section class="game-area">
+
+
+            <!-- STATUS -->
+            <div class="game-status">
+
+                <h1 id="turnTitle">
+
+                    Aguardando início...
+
+                </h1>
+
+                <p id="message">
+
+                    Clique em iniciar.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- TABULEIRO -->
+            <div class="genius-board">
+
+
+                <div class="color green"
+                     data-color="green">
+
+                </div>
+
+
+                <div class="color red"
+                     data-color="red">
+
+                </div>
+
+
+                <div class="color yellow"
+                     data-color="yellow">
+
+                </div>
+
+
+                <div class="color blue"
+                     data-color="blue">
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- GAME OVER -->
+            <div class="game-over-screen"
+                 id="gameOverScreen">
+
+                <h1>
+
+                    💥 Game Over
+
+                </h1>
+
+                <p id="gameOverText">
+
+                    -
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- DIREITA -->
+        <aside class="sidebar right">
+
+
+            <!-- CAMPEONATO -->
+            <section class="card">
+
+                <h2>Campeonato</h2>
+
+                <p id="currentPlayerText">
+
+                    Jogador atual: -
+
+                </p>
+
+                <p id="roundText">
+
+                    Rodada: 0
+
+                </p>
+
+            </section>
+
+
+
+            <!-- PLACAR -->
+            <section class="card">
+
+                <h2>Placar</h2>
+
+                <div class="score-box">
+
+
+                    <div class="score-item">
+
+                        <h3>Jogador 1</h3>
+
+                        <span id="player1Score">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="score-item">
+
+                        <h3>Jogador 2</h3>
+
+                        <span id="player2Score">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- RECORD -->
+            <section class="card">
+
+                <h2>Recorde</h2>
+
+                <p id="recordText">
+
+                    0 pontos
+
+                </p>
+
+            </section>
+
+
+        </aside>
+
+    </main>
+
+
+
+    <!-- ÁUDIOS -->
+    <!-- Só colocar os arquivos na pasta assets/sounds -->
+
+
+    <audio id="soundGreen"
+           src="../assets/sounds/verde.mp3">
+
+    </audio>
+
+
+    <audio id="soundRed"
+           src="../assets/sounds/vermelho.mp3">
+
+    </audio>
+
+
+    <audio id="soundYellow"
+           src="../assets/sounds/amarelo.mp3">
+
+    </audio>
+
+
+    <audio id="soundBlue"
+           src="../assets/sounds/azul.mp3">
+
+    </audio>
+
+
+
+    <script src="genius.js"></script>
+
+</body>
+</html>
