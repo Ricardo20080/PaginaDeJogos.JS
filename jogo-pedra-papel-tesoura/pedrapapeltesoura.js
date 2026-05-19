@@ -1,46 +1,102 @@
 // ======================================================
-// SELETORES
+// ELEMENTOS
 // ======================================================
 
-const turnTitle = document.getElementById("turnTitle");
-const roundMessage = document.getElementById("roundMessage");
+const turnTitle =
+    document.getElementById("turnTitle");
 
-const playerChoiceDisplay = document.getElementById("playerChoiceDisplay");
-const computerChoiceDisplay = document.getElementById("computerChoiceDisplay");
+const roundMessage =
+    document.getElementById("roundMessage");
 
-const resultText = document.getElementById("resultText");
+const resultText =
+    document.getElementById("resultText");
 
-const currentPlayerText = document.getElementById("currentPlayer");
-const gameModeText = document.getElementById("gameModeText");
-const phaseStatus = document.getElementById("phaseStatus");
+const currentPlayerText =
+    document.getElementById("currentPlayer");
 
-const player1ScoreElement = document.getElementById("player1Score");
-const player2ScoreElement = document.getElementById("player2Score");
+const gameModeText =
+    document.getElementById("gameModeText");
 
-const startGameBtn = document.getElementById("startGameBtn");
-const resetScoreBtn = document.getElementById("resetScoreBtn");
+const phaseStatus =
+    document.getElementById("phaseStatus");
 
-const modeButtons = document.querySelectorAll(".mode-btn");
-const choiceButtons = document.querySelectorAll(".choice-btn");
+const playerChoiceDisplay =
+    document.getElementById("playerChoiceDisplay");
+
+const computerChoiceDisplay =
+    document.getElementById("computerChoiceDisplay");
+
+const player1ScoreElement =
+    document.getElementById("player1Score");
+
+const player2ScoreElement =
+    document.getElementById("player2Score");
+
+const startGameBtn =
+    document.getElementById("startGameBtn");
+
+const resetScoreBtn =
+    document.getElementById("resetScoreBtn");
+
+const modeButtons =
+    document.querySelectorAll(".mode-btn");
+
+const choiceButtons =
+    document.querySelectorAll(".choice-btn");
+
+
+// ======================================================
+// CONFIG
+// ======================================================
+
+const CHOICES = [
+    "pedra",
+    "papel",
+    "tesoura"
+];
+
+const EMOJIS = {
+
+    pedra: "✊",
+    papel: "📄",
+    tesoura: "✂️"
+
+};
 
 
 // ======================================================
 // ESTADO DO JOGO
 // ======================================================
 
-const CHOICES = ["pedra", "papel", "tesoura"];
-
 let gameStarted = false;
-
-let currentMode = "3";
 
 let currentPlayer = 1;
 
-let player1Wins = 0;
-let player2Wins = 0;
+let currentMode = "3";
 
-let playerMachineWins = 0;
+let roundsPlayed = 0;
+
+let playerWinsAgainstMachine = 0;
+
 let machineWins = 0;
+
+
+// ======================================================
+// PLACAR GERAL (HISTÓRICO)
+// ======================================================
+
+let player1Championships = 0;
+
+let player2Championships = 0;
+
+
+// ======================================================
+// RESULTADO DO CAMPEONATO ATUAL
+// ======================================================
+
+let player1SeriesWins = 0;
+
+let player2SeriesWins = 0;
 
 
 // ======================================================
@@ -49,20 +105,34 @@ let machineWins = 0;
 
 loadScore();
 
-function saveScore() {
+function loadScore() {
 
-    localStorage.setItem("ppt_player1", player1Wins);
-    localStorage.setItem("ppt_player2", player2Wins);
+    const p1 =
+        localStorage.getItem("ppt_player1");
+
+    const p2 =
+        localStorage.getItem("ppt_player2");
+
+    player1Championships =
+        Number(p1) || 0;
+
+    player2Championships =
+        Number(p2) || 0;
 
 }
 
-function loadScore() {
 
-    const savedP1 = localStorage.getItem("ppt_player1");
-    const savedP2 = localStorage.getItem("ppt_player2");
+function saveScore() {
 
-    if(savedP1) player1Wins = Number(savedP1);
-    if(savedP2) player2Wins = Number(savedP2);
+    localStorage.setItem(
+        "ppt_player1",
+        player1Championships
+    );
+
+    localStorage.setItem(
+        "ppt_player2",
+        player2Championships
+    );
 
 }
 
@@ -73,6 +143,7 @@ function loadScore() {
 
 updateScoreUI();
 updateSideInfo();
+updatePhaseText();
 
 
 // ======================================================
@@ -86,24 +157,34 @@ modeButtons.forEach(button => {
         if(gameStarted) return;
 
         modeButtons.forEach(btn => {
+
             btn.classList.remove("active");
+
         });
 
         button.classList.add("active");
 
-        currentMode = button.dataset.mode;
+        currentMode =
+            button.dataset.mode;
 
         updateSideInfo();
+        updatePhaseText();
 
     });
 
 });
 
 
-startGameBtn.addEventListener("click", startGame);
+startGameBtn.addEventListener(
+    "click",
+    startGame
+);
 
 
-resetScoreBtn.addEventListener("click", resetScoreboard);
+resetScoreBtn.addEventListener(
+    "click",
+    resetScoreboard
+);
 
 
 choiceButtons.forEach(button => {
@@ -112,7 +193,8 @@ choiceButtons.forEach(button => {
 
         if(!gameStarted) return;
 
-        const playerChoice = button.dataset.choice;
+        const playerChoice =
+            button.dataset.choice;
 
         playRound(playerChoice);
 
@@ -131,11 +213,49 @@ function startGame() {
 
     currentPlayer = 1;
 
-    resetRoundCounters();
+    player1SeriesWins = 0;
+    player2SeriesWins = 0;
 
-    turnTitle.textContent = "Jogador 1 está jogando";
+    resetPlayerSeries();
 
-    roundMessage.textContent = "Escolha Pedra, Papel ou Tesoura.";
+
+    // ==================================================
+    // MODO LIVRE
+    // ==================================================
+
+    if(currentMode === "free") {
+
+        turnTitle.textContent =
+            "Modo Livre";
+
+        roundMessage.textContent =
+            "Jogue infinitamente contra a máquina.";
+
+        resultText.textContent =
+            "Boa sorte!";
+
+        currentPlayerText.textContent =
+            "Singleplayer";
+
+        updatePhaseText();
+
+        return;
+
+    }
+
+
+    // ==================================================
+    // MODOS MULTIPLAYER
+    // ==================================================
+
+    turnTitle.textContent =
+        "Jogador 1 está jogando";
+
+    roundMessage.textContent =
+        "Escolha Pedra, Papel ou Tesoura.";
+
+    resultText.textContent =
+        "Boa sorte!";
 
     updateSideInfo();
 
@@ -148,14 +268,19 @@ function startGame() {
 
 function playRound(playerChoice) {
 
-    const computerChoice = getComputerChoice();
+    const computerChoice =
+        getComputerChoice();
 
-    showChoices(playerChoice, computerChoice);
-
-    const result = compareChoices(
+    showChoices(
         playerChoice,
         computerChoice
     );
+
+    const result =
+        compareChoices(
+            playerChoice,
+            computerChoice
+        );
 
     processRoundResult(result);
 
@@ -163,14 +288,16 @@ function playRound(playerChoice) {
 
 
 // ======================================================
-// COMPUTADOR
+// ESCOLHA DA MÁQUINA
 // ======================================================
 
 function getComputerChoice() {
 
-    const randomIndex = Math.floor(
-        Math.random() * CHOICES.length
-    );
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            CHOICES.length
+        );
 
     return CHOICES[randomIndex];
 
@@ -184,7 +311,9 @@ function getComputerChoice() {
 function compareChoices(player, computer) {
 
     if(player === computer) {
+
         return "draw";
+
     }
 
     const rules = {
@@ -203,30 +332,43 @@ function compareChoices(player, computer) {
 
 
 // ======================================================
-// PROCESSAR RESULTADO
+// RESULTADO DA RODADA
 // ======================================================
 
 function processRoundResult(result) {
+
+    // ==================================================
+    // EMPATE NÃO CONTA
+    // ==================================================
+
+    if(result !== "draw") {
+
+        roundsPlayed++;
+
+    }
+
+
+    // ==================================================
+    // RESULTADO
+    // ==================================================
 
     if(result === "draw") {
 
         resultText.textContent =
             "Empate!";
 
-        return;
-
     }
 
-    if(result === "win") {
+    else if(result === "win") {
 
-        playerMachineWins++;
+        playerWinsAgainstMachine++;
 
         resultText.textContent =
             "Vitória!";
 
     }
 
-    if(result === "lose") {
+    else {
 
         machineWins++;
 
@@ -235,57 +377,88 @@ function processRoundResult(result) {
 
     }
 
-    checkModeProgress();
 
-}
-
-
-// ======================================================
-// MODOS
-// ======================================================
-
-function checkModeProgress() {
-
-    if(currentMode === "free") {
-        updatePhaseText();
-        return;
-    }
-
-    const limit = Number(currentMode);
-
-    if(
-        playerMachineWins >= limit ||
-        machineWins >= limit
-    ) {
-
-        finishPlayerTurn();
-
-        return;
-
-    }
+    // ==================================================
+    // UI
+    // ==================================================
 
     updatePhaseText();
 
+
+    // ==================================================
+    // LIMPA ESCOLHAS
+    // ==================================================
+
+    clearChoices();
+
+
+    // ==================================================
+    // VERIFICA FIM
+    // ==================================================
+
+    checkSeriesEnd();
+
 }
 
 
 // ======================================================
-// FIM DO TURNO
+// FIM DA SÉRIE
+// ======================================================
+
+function checkSeriesEnd() {
+
+    // ==================================================
+    // MODO LIVRE NÃO TERMINA
+    // ==================================================
+
+    if(currentMode === "free") {
+
+        return;
+
+    }
+
+    const maxRounds =
+        Number(currentMode);
+
+    if(roundsPlayed >= maxRounds) {
+
+        finishPlayerTurn();
+
+    }
+
+}
+
+
+// ======================================================
+// FINALIZA TURNO
 // ======================================================
 
 function finishPlayerTurn() {
 
     const playerWonSeries =
-        playerMachineWins > machineWins;
+
+        playerWinsAgainstMachine >
+        machineWins;
+
+
+    // ==================================================
+    // JOGADOR VENCEU A SÉRIE
+    // ==================================================
 
     if(playerWonSeries) {
 
         if(currentPlayer === 1) {
-            player1Wins++;
+
+            player1Championships++;
+            player1SeriesWins++;
+
         }
 
         else {
-            player2Wins++;
+
+            player2Championships++;
+            player2SeriesWins++;
+
         }
 
     }
@@ -294,21 +467,43 @@ function finishPlayerTurn() {
 
     saveScore();
 
+
+    // ==================================================
+    // MODO LIVRE
+    // ==================================================
+
+    if(currentMode === "free") {
+
+        return;
+
+    }
+
+
+    // ==================================================
+    // TROCA PARA JOGADOR 2
+    // ==================================================
+
     if(currentPlayer === 1) {
 
         currentPlayer = 2;
 
-        resetRoundCounters();
+        resetPlayerSeries();
 
         turnTitle.textContent =
             "Passe para Jogador 2";
+
+        resultText.textContent =
+            "Troca de jogador...";
+
+        updateSideInfo();
 
         setTimeout(() => {
 
             turnTitle.textContent =
                 "Jogador 2 está jogando";
 
-            updateSideInfo();
+            resultText.textContent =
+                "Boa sorte!";
 
         }, 2000);
 
@@ -316,13 +511,18 @@ function finishPlayerTurn() {
 
     }
 
+
+    // ==================================================
+    // FINALIZA CAMPEONATO
+    // ==================================================
+
     finishChampionship();
 
 }
 
 
 // ======================================================
-// CAMPEONATO
+// FINAL DO CAMPEONATO
 // ======================================================
 
 function finishChampionship() {
@@ -331,32 +531,47 @@ function finishChampionship() {
 
     let winnerMessage = "";
 
-    if(player1Wins > player2Wins) {
+
+    // ==================================================
+    // RESULTADO DA PARTIDA ATUAL
+    // ==================================================
+
+    if(
+        player1SeriesWins >
+        player2SeriesWins
+    ) {
 
         winnerMessage =
-            "Jogador 1 venceu o campeonato!";
+            "🏆 Jogador 1 venceu o campeonato!";
 
     }
 
-    else if(player2Wins > player1Wins) {
+    else if(
+        player2SeriesWins >
+        player1SeriesWins
+    ) {
 
         winnerMessage =
-            "Jogador 2 venceu o campeonato!";
+            "🏆 Jogador 2 venceu o campeonato!";
 
     }
 
     else {
 
         winnerMessage =
-            "O campeonato terminou empatado!";
+            "🤝 O campeonato terminou empatado!";
 
     }
+
 
     turnTitle.textContent =
         "Campeonato encerrado";
 
     resultText.textContent =
         winnerMessage;
+
+    roundMessage.textContent =
+        "Clique em iniciar para jogar novamente.";
 
 }
 
@@ -367,23 +582,52 @@ function finishChampionship() {
 
 function resetScoreboard() {
 
-    player1Wins = 0;
-    player2Wins = 0;
-
-    resetRoundCounters();
+    gameStarted = false;
 
     currentPlayer = 1;
 
-    gameStarted = false;
+    roundsPlayed = 0;
 
-    localStorage.clear();
+    playerWinsAgainstMachine = 0;
+
+    machineWins = 0;
+
+    player1Championships = 0;
+
+    player2Championships = 0;
+
+    player1SeriesWins = 0;
+
+    player2SeriesWins = 0;
+
+
+    // ==================================================
+    // REMOVE APENAS ESSE JOGO
+    // ==================================================
+
+    localStorage.removeItem(
+        "ppt_player1"
+    );
+
+    localStorage.removeItem(
+        "ppt_player2"
+    );
+
+
+    clearChoicesImmediately();
 
     updateScoreUI();
 
     updateSideInfo();
 
+    updatePhaseText();
+
+
     turnTitle.textContent =
         "Aguardando início...";
+
+    roundMessage.textContent =
+        "Escolha um modo e inicie o campeonato.";
 
     resultText.textContent =
         "Nenhuma rodada iniciada.";
@@ -392,26 +636,35 @@ function resetScoreboard() {
 
 
 // ======================================================
-// AUXILIARES
+// RESET DA SÉRIE
 // ======================================================
 
-function resetRoundCounters() {
+function resetPlayerSeries() {
 
-    playerMachineWins = 0;
+    roundsPlayed = 0;
+
+    playerWinsAgainstMachine = 0;
+
     machineWins = 0;
+
+    clearChoicesImmediately();
 
     updatePhaseText();
 
 }
 
 
+// ======================================================
+// UI
+// ======================================================
+
 function updateScoreUI() {
 
     player1ScoreElement.textContent =
-        player1Wins;
+        player1Championships;
 
     player2ScoreElement.textContent =
-        player2Wins;
+        player2Championships;
 
 }
 
@@ -429,21 +682,54 @@ function updateSideInfo() {
 
 function updatePhaseText() {
 
+    // ==================================================
+    // MODO LIVRE
+    // ==================================================
+
+    if(currentMode === "free") {
+
+        phaseStatus.textContent =
+
+            `Livre | Vitórias: ${playerWinsAgainstMachine}
+             x Derrotas: ${machineWins}`;
+
+        return;
+
+    }
+
+
+    // ==================================================
+    // MODOS NORMAIS
+    // ==================================================
+
+    const maxRounds =
+        Number(currentMode);
+
     phaseStatus.textContent =
-        `Jogador ${currentPlayer}: ${playerMachineWins}
-        x Máquina: ${machineWins}`;
+
+        `Rodada ${roundsPlayed}/${maxRounds}
+         | Jogador: ${playerWinsAgainstMachine}
+         x Máquina: ${machineWins}`;
 
 }
 
 
+// ======================================================
+// AUXILIARES
+// ======================================================
+
 function getModeName() {
 
     if(currentMode === "3") {
+
         return "Melhor de 3";
+
     }
 
     if(currentMode === "7") {
+
         return "Melhor de 7";
+
     }
 
     return "Modo Livre";
@@ -454,24 +740,39 @@ function getModeName() {
 function showChoices(player, computer) {
 
     playerChoiceDisplay.textContent =
-        getEmoji(player);
+        EMOJIS[player];
 
     computerChoiceDisplay.textContent =
-        getEmoji(computer);
+        EMOJIS[computer];
 
 }
 
 
-function getEmoji(choice) {
+// ======================================================
+// LIMPA ESCOLHAS COM DELAY
+// ======================================================
 
-    const emojis = {
+function clearChoices() {
 
-        pedra: "✊",
-        papel: "📄",
-        tesoura: "✂️"
+    setTimeout(() => {
 
-    };
+        clearChoicesImmediately();
 
-    return emojis[choice];
+    }, 2000);
+
+}
+
+
+// ======================================================
+// LIMPA ESCOLHAS IMEDIATAMENTE
+// ======================================================
+
+function clearChoicesImmediately() {
+
+    playerChoiceDisplay.textContent =
+        "?";
+
+    computerChoiceDisplay.textContent =
+        "?";
 
 }
